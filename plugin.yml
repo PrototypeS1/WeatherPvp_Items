@@ -1,0 +1,11 @@
+name: WeatherPvP Items
+version: alpha
+author: Prototype_S1
+main: fr.prototypes1.wpvpitems.main
+commands:
+  items:
+    description: Permet d'intéragir avec le plugin Storm Pvp Items.
+    permission: items.use
+    aliases: it
+    permission-message: You do not have access to this command.
+    usage: Try /it info or  /it <custom item>
