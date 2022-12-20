@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,7 +41,7 @@ public class wpvpitemsListners implements Listener {
 				
 				inv.setItem(1, getItem(Material.DIAMOND_PICKAXE, "§6§lDigger's Pickaxe", "§rThis pickaxe gives §e§lHaste IV§r", "§rwhen digging with it.", "§7Efficiency VI", "§7Unbreaking L", Enchantment.DIG_SPEED, 6, Enchantment.DURABILITY, 50));
 				
-				inv.setItem(2, getItem(Material.DIAMOND_SWORD, "§6§lHunter's Sword", "§rThis sword gives §8§lWither II", "§rto the opponent it hit.", "§7Sharpness VI", "§7Unbreaking L", Enchantment.DAMAGE_ALL, 6, Enchantment.DURABILITY, 50));
+				inv.setItem(2, getItem(Material.DIAMOND_SWORD, "§6§lHunter's Sword", "§rThis sword gives §8§lWither III", "§rto the opponent it hit.", "§7Sharpness VI", "§7Unbreaking L", Enchantment.DAMAGE_ALL, 6, Enchantment.DURABILITY, 50));
 				
 				player.openInventory(inv);
 				
@@ -69,9 +70,21 @@ public class wpvpitemsListners implements Listener {
 	public void onHit(EntityDamageByEntityEvent event) {
 		
 		Entity damager = event.getDamager();
-		if (damager instanceof Player) { Player player = (Player) damager;}
 		
-		System.out.println(damager);
+		if (damager instanceof Player) { 
+			
+			Player player = (Player) damager;
+			
+			if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lHunter's Sword")) {
+				
+				((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 3));
+				player.sendMessage("Triggered Wither III on your opponent !");
+
+			}
+			
+		}
+		
+		
 		
 	}
 	
