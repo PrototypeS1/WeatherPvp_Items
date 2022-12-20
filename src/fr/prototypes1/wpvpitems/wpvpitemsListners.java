@@ -41,7 +41,15 @@ public class WPvPItemsListners implements Listener {
 				
 				inv.setItem(1, getItem(Material.DIAMOND_PICKAXE, "§6§lDigger's Pickaxe", "§rThis pickaxe gives §e§lHaste IV§r", "§rwhen digging with it.", "§7Efficiency VI", "§7Unbreaking L", Enchantment.DIG_SPEED, 6, Enchantment.DURABILITY, 50));
 				
-				inv.setItem(2, getItem(Material.DIAMOND_SWORD, "§6§lHunter's Sword", "§rThis sword gives §8§lWither III", "§rto the opponent it hit.", "§7Sharpness VI", "§7Unbreaking L", Enchantment.DAMAGE_ALL, 6, Enchantment.DURABILITY, 50));
+				inv.setItem(2, getItem(Material.DIAMOND_SWORD, "§c§k|§r §4⚔§r §c§k|§r §8§lWither Sword§r §c§k|§r §4⚔§r §c§k|", "§rThis sword has a chance of giving", "§8§lWither§r to the opponent on hit.", "§7Sharpness II", "§7Unbreaking L", Enchantment.DAMAGE_ALL, 2, Enchantment.DURABILITY, 50));
+				
+				inv.setItem(9, getItem(Material.DIAMOND_HELMET, "§d§lToughth Helmet", "§rPart of the §c§lEverlasting Armor§r set", "§7Protection II", "§7Unbreaking L", null, Enchantment.PROTECTION_ENVIRONMENTAL, 2, Enchantment.DURABILITY, 50));
+				
+				inv.setItem(18, getItem(Material.DIAMOND_CHESTPLATE, "§d§lToughth Chestplate", "§rPart of the §c§lEverlasting Armor§r set", "§7Protection II", "§7Unbreaking L", null, Enchantment.PROTECTION_ENVIRONMENTAL, 2, Enchantment.DURABILITY, 50));
+				
+				inv.setItem(27, getItem(Material.DIAMOND_LEGGINGS, "§d§lToughth Leggings", "§rPart of the §c§lEverlasting Armor§r set", "§7Protection II", "§7Unbreaking L", null, Enchantment.PROTECTION_ENVIRONMENTAL, 2, Enchantment.DURABILITY, 50));
+				
+				inv.setItem(36, getItem(Material.DIAMOND_BOOTS, "§d§lToughth Boots", "§rPart of the §c§lEverlasting Armor§r set", "§7Protection II", "§7Unbreaking L", null, Enchantment.PROTECTION_ENVIRONMENTAL, 2, Enchantment.DURABILITY, 50));
 				
 				player.openInventory(inv);
 				
@@ -75,11 +83,38 @@ public class WPvPItemsListners implements Listener {
 			
 			Player player = (Player) damager;
 			
-			if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§6§lHunter's Sword")) {
+			if (player.getItemInHand().hasItemMeta() && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§c§k|§r §4⚔§r §c§k|§r §8§lWither Sword§r §c§k|§r §4⚔§r §c§k|")) {
 				
-				((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 3));
-				player.sendMessage("Triggered Wither III on your opponent !");
+				Float rand = (float) Math.random();
+				
+				if (rand < 0.05) { //5% Wither III
+												
+				((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 50, 2));
 
+				
+				}
+				
+				if (rand > 0.05 && rand < 0.2) { //15% Wither II
+					
+				((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 1));
+
+					
+				}
+				
+				if (rand > 0.2 && rand < 0.7) { //50% Wither I
+					
+				((LivingEntity) event.getEntity()).addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 250, 0));
+
+					
+				}
+
+			}
+			
+			if (player.getInventory().getHelmet().hasItemMeta() && player.getInventory().getChestplate().hasItemMeta() && player.getInventory().getLeggings().hasItemMeta() && player.getInventory().getBoots().hasItemMeta() && player.getInventory().getHelmet().getItemMeta().getDisplayName().equalsIgnoreCase("§d§lToughth Helmet") && player.getInventory().getChestplate().getItemMeta().getDisplayName().equalsIgnoreCase("§d§lToughth Chestplate") && player.getInventory().getLeggings().getItemMeta().getDisplayName().equalsIgnoreCase("§d§lToughth Leggings") && player.getInventory().getBoots().getItemMeta().getDisplayName().equalsIgnoreCase("§d§lToughth Boots")) {
+				
+				player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60, 1));
+				player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 200, 0));
+				
 			}
 			
 		}
