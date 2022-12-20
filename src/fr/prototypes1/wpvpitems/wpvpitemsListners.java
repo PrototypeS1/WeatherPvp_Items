@@ -69,6 +69,7 @@ public class wpvpitemsListners implements Listener {
 	public void onHit(EntityDamageByEntityEvent event) {
 		
 		Entity damager = event.getDamager();
+		if (damager instanceof Player) { Player player = (Player) damager;}
 		
 		System.out.println(damager);
 		
