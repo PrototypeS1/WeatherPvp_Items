@@ -20,7 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-public class wpvpitemsListners implements Listener {
+public class WPvPItemsListners implements Listener {
 	
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
@@ -67,7 +67,7 @@ public class wpvpitemsListners implements Listener {
 	}
 	
 	@EventHandler
-	public void onHit(EntityDamageByEntityEvent event) {
+	public void onHit(EntityDamageByEntityEvent event){
 		
 		Entity damager = event.getDamager();
 		

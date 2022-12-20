@@ -9,7 +9,7 @@ public class main extends JavaPlugin {
 	public void onEnable() {
 		System.out.println("§3[WeatherPvP Items]§r The plugin has started.");
 		getCommand("items").setExecutor(new CommandItem());
-		getServer().getPluginManager().registerEvents(new wpvpitemsListners(), this);
+		getServer().getPluginManager().registerEvents(new WPvPItemsListners(), this);
 	}
 	@Override
 	public void onDisable() {
